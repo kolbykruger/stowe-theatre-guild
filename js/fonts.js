@@ -4,7 +4,7 @@
         sessionStorage.fonts = true;
       },
       google: {
-        families: ['Open+Sans:300,400,400i,500,600,700']
+        families: ['Raleway:300,400,400i,500,600,700,800']
       },
       timeout: 2000
     };
