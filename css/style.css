@@ -370,12 +370,13 @@ button.button, input[type="submit"].button {cursor: pointer; font-family: inheri
 .post_list_widget{margin: 120px auto 0; overflow: hidden;}
 .post_list_widget h2{width: 100%; margin: 0 10px 10px;}
 .post_list_widget .group {display: flex; flex-flow: row wrap; margin: 0 -5px;}
-.post_list_widget .item {position: relative; margin: 5px; width: calc(33.333% - 10px);}
+.post_list_widget .item {position: relative; margin: 5px; width: calc(33.333% - 10px); overflow: hidden;}
 .post_list_widget .item a {text-decoration: none; color: inherit;}
+.post_list_widget .item img {transition: 250ms;}
 .post_list_widget .item .info {position: absolute; top: 0; left: 0; width: 100%; height: 100%; display: flex; align-items: flex-end; justify-content: center; z-index: 1;}
 .post_list_widget .item .info::before {content: ''; position: absolute; left: 0; top: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); background: linear-gradient(to bottom, rgba(0,0,0,0) 0%, rgba(0,0,0,0.75) 100%); z-index: -1;}
 .post_list_widget .item .title {position: relative; text-align: center; color: #fff; padding: 0 0.5em; line-height: 1.25;}
-
+.post_list_widget .item:hover img {transform: scale(1.08);}
     @media (max-width: 768px) {
     .post_list_widget .item{width: calc(50% - 20px);}
     }
