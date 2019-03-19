@@ -28,13 +28,23 @@ img{max-width: 100%; height: auto; vertical-align: bottom; border: none;}
 .buttons.center {justify-content: center;}
 .buttons.right {justify-content: flex-end;}
 .button + .button {margin: 0 0 0 1em;}
-.button {display: inline-flex; align-items: center; margin: 0; padding: 0.35em 0.5em; font-size: 2rem; border: 1px solid #d31145; color: #d31145; transition: 150ms ease; text-decoration: none; user-select: none;}
-.button:hover, .button:focus { background: #f0574b; box-shadow: 0 4px 6px rgba(50,50,93,.11), 0 1px 3px rgba(0,0,0,.08);}
+.button {position: relative; display: inline-flex; align-items: center; margin: 0; padding: 0.35em 0.5em; font-size: 2rem; border: 1px solid #d31145; color: #d31145; transition: 150ms ease; text-decoration: none; user-select: none; z-index: 1;}
+.button::before {position: absolute; content: ''; left: 0; bottom: 0; width: 100%; height: 100%; max-height: 0; background: #d31145; z-index: -1; transition: 150ms ease;}
+.button:hover, .button:focus {color: #fff;}
+.button:hover::before, .button:focus::before {max-height: 100%;}
 .button:active { box-shadow: 0 2px 4px 0 rgba(50,50,93,.1); transform: translateY(1px);}
 button.button, input[type="submit"].button {cursor: pointer; font-family: inherit; font-size: inherit; line-height: inherit; color: #fff; border: none; outline: none; -webkit-appearance: none; -moz-appearance: none;}
 
 .button.white {border-color: #fff; color: #fff;}
+.button.white:hover,
+.button.white:focus {color: #14135e;}
+.button.white:hover::before,
+.button.white:focus::before {background: #fff;}
 .button.blue {border-color: #14135e; color: #14135e;}
+.button.blue:hover,
+.button.blue:focus {color: #fff;}
+.button.blue:hover::before,
+.button.blue:focus::before {background: #14135e;}
 
     @media (max-width: 768px) {
     .button,
@@ -98,6 +108,7 @@ button.button, input[type="submit"].button {cursor: pointer; font-family: inheri
 .nav .item{position: relative;}
 .nav .item a{margin:0 40px 0 0; display: block; color: #4e4e4e; text-decoration: none; font-weight: 400; font-size: 2rem; transition: color 0.3s cubic-bezier(.25,.8,.25,1);}
 .nav .item a:hover, .nav .item a:focus{color: #d31145;}
+.nav .item a.button:hover, .nav .item a.button:focus{color: #fff;}
 .nav .item:last-child a{margin:0; padding: 0.35em 0.5em; border: 1px solid #d31145; color: #d31145;}
 .nav .item i{font-size: 1.2rem; cursor: pointer; margin: 0 0 0 6px;}
 .nav .item.open{background: rgba(255,255,255,.2);color: #d31145;}
@@ -209,7 +220,8 @@ button.button, input[type="submit"].button {cursor: pointer; font-family: inheri
     }
 
 /*Intro Text*/
-.intro_text{display: flex; align-items: center; justify-content: space-between; margin: 3em auto;}
+.intro_text_wrap {background: #fff; padding: 3em 0; margin: 0 0 3em 0;}
+.intro_text{display: flex; align-items: center; justify-content: space-between; margin: 3em auto; max-width: 1200px;}
 .intro_text .info {}
 .intro_text .image {min-width: 500px; margin-left: 3em;}
 .intro_text .buttons {margin: 1em 0;}
@@ -221,8 +233,10 @@ button.button, input[type="submit"].button {cursor: pointer; font-family: inheri
 .shows {}
 .shows .group {display: flex; margin: 0 -10px;}
 .shows .item {margin: 10px; background: #fff; box-shadow: 0 7px 14px rgba(50,50,93,.1), 0 3px 6px rgba(0,0,0,.08); transition: 150ms;}
-.shows .item:hover {transform: translateY(-8px);}
 .shows .item > a {text-decoration: none; color: inherit;}
+.shows .item .cover {overflow: hidden;}
+.shows .item .cover img {transition: 250ms;}
+.shows .item:hover .cover img {transform: scale(1.08);}
 .shows .item .info {padding: 0 1em 1em; text-align: center;}
 .shows .item .info > * {margin: 0.5em 0;}
 .shows .item .title {}
@@ -232,10 +246,9 @@ button.button, input[type="submit"].button {cursor: pointer; font-family: inheri
 .shows .item .info .button {font-size: 1.6rem;}
 
 /* Sponsors */
-.sponsors {margin: 6em 0;}
-.sponsors .section {position: relative; padding: 1em; text-align: center;}
-.sponsors .section.top {max-width: 660px; margin: 0 auto;}
-.sponsors .section.season .group {}
+.sponsors {margin: 3em 0; padding: 3em 0; background: #fff;}
+.sponsors .section {position: relative; padding: 1em; text-align: center; max-width: 1200px; margin: 3em auto;}
+.sponsors .section.top {max-width: 500px; margin: 0 auto;}
 .sponsors .section.season .slick-slide {float: none; display: inline-block; padding: 1em 3em; vertical-align: middle;}
 .sponsors .prev{user-select: none;opacity: .2; position: absolute; cursor: pointer; top: 50%;  transform: translateY(-50%); background: none; left: 0; z-index: 100;  border: none; padding: 8px 20px; color: inherit; font-size: 30px; transition: all 0.2s cubic-bezier(.25,.8,.25,1);}
 .sponsors .next{user-select: none;opacity: .2; position: absolute; cursor: pointer; top: 50%;  transform: translateY(-50%); background: none; right: 0; z-index: 100;  border: none; padding: 8px 20px; color: inherit; font-size: 30px; transition: all 0.2s cubic-bezier(.25,.8,.25,1);}
@@ -287,7 +300,7 @@ button.button, input[type="submit"].button {cursor: pointer; font-family: inheri
     }
 
 /*Instafeed*/
-.instagram_widget{margin: 120px auto 0; width: 100%; max-width: 1200px;}
+.instagram_widget{margin: 3em auto 0; width: 100%; max-width: 1200px;}
 .instagram_widget .heading{width: 100%; margin:0 0 10px 0;}
     @media (max-width: 768px) {
     .instagram_widget{margin: 80px auto 0;}
@@ -375,7 +388,7 @@ button.button, input[type="submit"].button {cursor: pointer; font-family: inheri
 .pagination li a.active{font-weight: 600; border-bottom: #f00 3px solid; padding: 0 1px;}
 
 /* Blog: Post List Widget */
-.post_list_widget{margin: 120px auto 0; overflow: hidden;}
+.post_list_widget{margin: 3em auto; overflow: hidden;}
 .post_list_widget h2{width: 100%; margin: 0 10px 10px;}
 .post_list_widget .group {display: flex; flex-flow: row wrap; margin: 0 -5px;}
 .post_list_widget .item {position: relative; margin: 5px; width: calc(33.333% - 10px); overflow: hidden;}
@@ -511,8 +524,8 @@ button.button, input[type="submit"].button {cursor: pointer; font-family: inheri
     }
 
 /*Footer*/
-.footer_wrap{width: 100%; background: #14135e; padding: 3em 1em; margin: 20px 0 0 0;}
-.footer{width: 100%; max-width: 1200px; margin: 0 auto; overflow: hidden; font-size: 1.2rem; text-align: center; color: #fff;}
+.footer_wrap{width: 100%; background: #14135e; padding: 1em; margin: 20px 0 0 0;}
+.footer{width: 100%; max-width: 1200px; margin: 0 auto; overflow: hidden; font-size: 1.6rem; text-align: center; color: #fff;}
 .footer a{color: #fff;}
 .footer .social{margin: 20px auto; font-size: 2rem; display: flex; justify-content: center;}
 .footer .social a{margin: 0 5px; position: relative; background: #fff; display: flex; align-items: center; justify-content: center; padding: 5px; color: #14135e; text-decoration: none; width: 2em; border-radius: 50%;}
@@ -521,5 +534,5 @@ button.button, input[type="submit"].button {cursor: pointer; font-family: inheri
 .footer .address{margin: 0 auto 5px;}
 .footer .contact{margin: 0 auto 5px;}
 .footer .copyright{margin: 0 auto 5px;}
-.footer .ewd{margin: 0 auto 5px; width: 200px;}
+.footer .ewd{margin: 2em auto 0; width: 200px;}
 .footer .ewd img{width: 100%;}
