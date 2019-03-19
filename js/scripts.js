@@ -3,6 +3,20 @@ $('a:not(.force), button:not(.force), input[type="submit"]:not(.force)').click(f
     return false
 })
 
+//Sponsors
+$('.sponsors .season .group').slick({
+  autoplay: true,
+  autoplaySpeed: 5000,
+  dots: true,
+  infinite: true,
+  fade: false,
+  speed: 300,
+  slidesToShow: 4,
+  slidesToScroll: 4,
+  prevArrow:'<button class="prev" title="Previous Slide"><i class="fal fa-chevron-left"></i></button>',
+  nextArrow:'<button class="next" title="Next Slide"><i class="fal fa-chevron-right"></i></button>'
+});
+
 //Scroll to Top
 $('body').append('<a href="" onclick="event.preventDefault()" class="event_track" data-cat="Extra" data-label="Back To Top"><i aria-hidden="true" class="far fa-arrow-alt-circle-up scrollToTop" title="Scroll Up"></i></a>');
 $(window).scroll(function(){
